@@ -15,25 +15,15 @@ function searchHandler(e) {
 	const inputVal = e.target.value;
 	const results = search(inputVal);
 
-	suggestions.innerHTML = '';
-
-	if (inputVal !== '') {
-		results.forEach(result => {
-			const li = document.createElement('li');
-			li.textContent = result;
-			suggestions.appendChild(li)
-		});
-		suggestions.style.display = 'block';
-	} else {
-		suggestions.style.display = 'none'
-	}
+	// Call showSuggestions to display the results
+	showSuggestions(results, inputVal);
 }
 
 function showSuggestions(results, inputVal) {
 	suggestions.innerHTML = '';
 
 	if (inputVal === '') {
-		suggestions.getElementsByClassName.display = 'none';
+		suggestions.style.display = 'none';
 		return;
 	}
 
@@ -43,17 +33,15 @@ function showSuggestions(results, inputVal) {
 		suggestions.appendChild(li);
 	});
 
-	suggestions.getElementsByClassName.display = 'block';
+	suggestions.style.display = 'block';
 }
 
 function useSuggestion(e) {
 	if (e.target.tagName === 'LI') {
 		input.value = e.target.textContent;
-		suggestions.getElementsByClassName.display = 'none'
+		suggestions.style.display = 'none';
 	}
 }
-
-console.log(results)
 
 input.addEventListener('keyup', searchHandler);
 suggestions.addEventListener('click', useSuggestion);
